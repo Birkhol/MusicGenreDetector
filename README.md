@@ -44,9 +44,13 @@ data/raw/
 Final structure:
 
 data/raw/
+
 ├── genres_original/
+
 ├── images_original/
+
 ├── features_30_sec.csv
+
 └── features_3_sec.csv
 
 ## Setup
