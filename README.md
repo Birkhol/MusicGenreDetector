@@ -30,6 +30,25 @@ Kaggle: https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre
 - `results/` - saved models, logs, and plots
 - `notebooks/` - experiments and data exploration
 
+## Dataset Setup
+
+1. Download the dataset from Kaggle:
+https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification
+
+2. Extract the files
+
+3. Create and place them in:
+
+data/raw/
+
+Final structure:
+
+data/raw/
+├── genres_original/
+├── images_original/
+├── features_30_sec.csv
+└── features_3_sec.csv
+
 ## Setup
 
 ```bash
