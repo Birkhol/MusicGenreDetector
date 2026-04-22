@@ -33,6 +33,6 @@ Kaggle: https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre
 ## Setup
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/music-genre-detector.git
-cd music-genre-detector
+git clone https://github.com/Birkhol/MusicGenreDetector.git
+cd MusicGenreDetector
 python -m venv venv
