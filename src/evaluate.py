@@ -18,7 +18,7 @@ from src.model_1dcnn import GenreCNN1D
 from src.model_2dcnn import GenreCNN2D
 
 
-MODEL_TYPE = "2d"  # Change between "1d" and "2d" to evaluate the models
+MODEL_TYPE = "1d"  # Change between "1d" and "2d" to evaluate the models
 
 
 def create_test_loader(model_type):

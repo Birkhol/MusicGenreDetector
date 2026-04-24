@@ -21,7 +21,7 @@ from src.model_2dcnn import GenreCNN2D
 
 
 # Change between "1d" and "2d" to choose model
-MODEL_TYPE = "2d"
+MODEL_TYPE = "1d"
 
 
 def create_dataloaders(model_type):
