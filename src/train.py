@@ -5,7 +5,7 @@ import torch.nn as nn
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 from src.plot_results import save_learning_curves
-from src.config import FIGURES_DIR, MODEL_TYPE
+from src.config import FIGURES_DIR, MODEL_TYPE, WEIGHT_DECAY
 
 from src.config import (
     SPLITS_DIR,
@@ -137,7 +137,8 @@ def train():
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(
         model.parameters(),
-        lr=LEARNING_RATE
+        lr=LEARNING_RATE,
+        weight_decay=WEIGHT_DECAY
     )
 
     best_val_accuracy = 0.0
