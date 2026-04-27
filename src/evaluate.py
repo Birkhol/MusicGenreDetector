@@ -3,6 +3,8 @@ import torch
 
 from torch.utils.data import DataLoader
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+from src.plot_results import save_confusion_matrix, save_classification_report
+from src.config import FIGURES_DIR, MODEL_TYPE
 
 from src.config import (
     SPLITS_DIR,
@@ -16,10 +18,6 @@ from src.utils import get_device
 from src.data_loader import AudioDataset, SpectrogramDataset
 from src.model_1dcnn import GenreCNN1D
 from src.model_2dcnn import GenreCNN2D
-
-
-MODEL_TYPE = "1d"  # Change between "1d" and "2d" to evaluate the models
-
 
 def create_test_loader(model_type):
     test_csv = os.path.join(SPLITS_DIR, "test.csv")
@@ -85,11 +83,31 @@ def evaluate():
 
     print(f"\nTest Accuracy: {accuracy:.4f}")
 
+
+    report = classification_report(
+        y_true,
+        y_pred,
+        target_names=GENRES,
+        output_dict=True
+    )
     print("\nClassification Report:")
     print(classification_report(y_true, y_pred, target_names=GENRES))
 
     print("\nConfusion Matrix:")
     print(confusion_matrix(y_true, y_pred))
+    save_confusion_matrix(
+        y_true,
+        y_pred,
+        GENRES,
+        os.path.join(FIGURES_DIR, f"{MODEL_TYPE}cnn_confusion_matrix.png")
+    )
+
+    save_classification_report(
+        report,
+        os.path.join(FIGURES_DIR, f"{MODEL_TYPE}cnn_classification_report.png")
+    )
+
+    print("Saved evaluation figures to results/figures/")
 
 
 if __name__ == "__main__":

@@ -12,6 +12,11 @@ MODELS_DIR = os.path.join(RESULTS_DIR, "models")
 LOGS_DIR = os.path.join(RESULTS_DIR, "logs")
 FIGURES_DIR = os.path.join(RESULTS_DIR, "figures")
 
+
+# Change this one to "1d" or "2d" for choosing which model (1D CNN) or (2D CNN) to be trained/evaluated
+MODEL_TYPE = "1d"
+
+
 GENRES = [
     "blues",
     "classical",

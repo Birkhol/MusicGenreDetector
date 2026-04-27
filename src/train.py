@@ -4,6 +4,8 @@ import torch.nn as nn
 
 from torch.utils.data import DataLoader
 from tqdm import tqdm
+from src.plot_results import save_learning_curves
+from src.config import FIGURES_DIR
 
 from src.config import (
     SPLITS_DIR,
@@ -18,11 +20,6 @@ from src.utils import set_seed, get_device, ensure_directories
 from src.data_loader import AudioDataset, SpectrogramDataset
 from src.model_1dcnn import GenreCNN1D
 from src.model_2dcnn import GenreCNN2D
-
-
-# Change between "1d" and "2d" to choose model
-MODEL_TYPE = "1d"
-
 
 def create_dataloaders(model_type):
     train_csv = os.path.join(SPLITS_DIR, "train.csv")
@@ -145,6 +142,13 @@ def train():
 
     best_val_accuracy = 0.0
 
+    history = {
+        "train_loss": [],
+        "train_acc": [],
+        "val_loss": [],
+        "val_acc": []
+    }
+
     for epoch in range(EPOCHS):
         print(f"\nEpoch {epoch + 1}/{EPOCHS}")
 
@@ -162,6 +166,11 @@ def train():
             criterion,
             device
         )
+
+        history["train_loss"].append(train_loss)
+        history["train_acc"].append(train_accuracy)
+        history["val_loss"].append(val_loss)
+        history["val_acc"].append(val_accuracy)
 
         print(
             f"Train Loss: {train_loss:.4f} | "
@@ -182,6 +191,11 @@ def train():
 
     print("\nTraining finished.")
     print(f"Best validation accuracy: {best_val_accuracy:.4f}")
+
+    save_learning_curves(
+        history,
+        os.path.join(FIGURES_DIR, f"{MODEL_TYPE}cnn_learning_curves.png")
+    )
 
 
 if __name__ == "__main__":
