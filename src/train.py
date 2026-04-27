@@ -5,7 +5,7 @@ import torch.nn as nn
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 from src.plot_results import save_learning_curves
-from src.config import FIGURES_DIR
+from src.config import FIGURES_DIR, MODEL_TYPE
 
 from src.config import (
     SPLITS_DIR,

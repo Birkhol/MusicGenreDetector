@@ -1,6 +1,8 @@
 import torch
 import torch.nn as nn
 
+from src.config import DROPOUT
+
 
 class GenreCNN1D(nn.Module):
     def __init__(self, num_classes=10):
@@ -38,7 +40,7 @@ class GenreCNN1D(nn.Module):
             nn.Flatten(),
             nn.Linear(256, 128),
             nn.ReLU(),
-            nn.Dropout(0.4),
+            nn.Dropout(DROPOUT),
             nn.Linear(128, num_classes)
         )
 
