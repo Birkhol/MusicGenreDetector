@@ -4,11 +4,10 @@ import librosa
 from PIL import Image
 import torch
 from torch.utils.data import Dataset
+import torchvision.transforms as transforms
+import random
 from src.config import SAMPLE_RATE, SAMPLES_PER_TRACK
 
-<<<<<<< Updated upstream
-# 1D CNN
-=======
 def spec_augment(image, time_mask_param=5, freq_mask_param=3, num_time_masks=1, num_freq_masks=1):
 
     # Apply SpecAugment to spectrogram image.
@@ -75,7 +74,6 @@ def random_crop(image, crop_size=(112, 112)):
         return image[:, top:top+crop_h, left:left+crop_w]
     else:
         return image
->>>>>>> Stashed changes
 class AudioDataset(Dataset):
     def __init__(self, csv_file):
         self.df = pd.read_csv(csv_file)
@@ -107,9 +105,10 @@ class AudioDataset(Dataset):
 
 # 2D CNN
 class SpectrogramDataset(Dataset):
-    def __init__(self, csv_file, image_size=(128, 128)):
+    def __init__(self, csv_file, image_size=(128, 128), augment=False):
         self.df = pd.read_csv(csv_file)
         self.image_size = image_size
+        self.augment = augment
 
     def __len__(self):
         return len(self.df)
@@ -125,8 +124,6 @@ class SpectrogramDataset(Dataset):
         image = np.transpose(image, (2, 0, 1))
         image = torch.tensor(image, dtype=torch.float32) # Convert image to a tensor
 
-<<<<<<< Updated upstream
-=======
         if self.augment:
             # Apply augmentations
             image = spec_augment(image)
@@ -142,6 +139,5 @@ class SpectrogramDataset(Dataset):
         # Clip to prevent extreme values after normalization
         image = torch.clamp(image, -2.0, 2.0)
 
->>>>>>> Stashed changes
         label = torch.tensor(int(row["label"]), dtype=torch.long)
         return image, label

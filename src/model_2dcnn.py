@@ -4,8 +4,6 @@ import torch.nn as nn
 from src.config import DROPOUT
 
 
-<<<<<<< Updated upstream
-=======
 class ResidualBlock(nn.Module):
     # Residual block with skip connection.
     def __init__(self, in_channels, out_channels, stride=1):
@@ -31,35 +29,25 @@ class ResidualBlock(nn.Module):
         return out
 
 
->>>>>>> Stashed changes
 class GenreCNN2D(nn.Module):
     def __init__(self, num_classes=10):
         super().__init__()
 
         self.features = nn.Sequential(
-            nn.Conv2d(3, 16, kernel_size=3, padding=1),
-            nn.BatchNorm2d(16),
-            nn.ReLU(),
-            nn.MaxPool2d(2),
-
-            nn.Conv2d(16, 32, kernel_size=3, padding=1),
+            # Initial conv layer
+            nn.Conv2d(3, 32, kernel_size=3, padding=1),
             nn.BatchNorm2d(32),
             nn.ReLU(),
             nn.MaxPool2d(2),
-
-            nn.Conv2d(32, 64, kernel_size=3, padding=1),
-            nn.BatchNorm2d(64),
-            nn.ReLU(),
+            
+            # Residual blocks
+            ResidualBlock(32, 64, stride=1),
             nn.MaxPool2d(2),
-
-            nn.Conv2d(64, 128, kernel_size=3, padding=1),
-            nn.BatchNorm2d(128),
-            nn.ReLU(),
+            
+            ResidualBlock(64, 128, stride=1),
             nn.MaxPool2d(2),
-
-            nn.Conv2d(128, 256, kernel_size=3, padding=1),
-            nn.BatchNorm2d(256),
-            nn.ReLU(),
+            
+            ResidualBlock(128, 256, stride=1),
 
             nn.AdaptiveAvgPool2d((1, 1))
         )
