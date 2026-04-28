@@ -14,7 +14,7 @@ FIGURES_DIR = os.path.join(RESULTS_DIR, "figures")
 
 
 # Change this one to "1d" or "2d" for choosing which model (1D CNN) or (2D CNN) to be trained/evaluated
-MODEL_TYPE = "1d"
+MODEL_TYPE = "2d"
 
 
 GENRES = [
@@ -47,6 +47,6 @@ BATCH_SIZE = 16
 LEARNING_RATE = 0.0001
 DROPOUT = 0.25
 WEIGHT_DECAY = 0
-EPOCHS = 40
+EPOCHS = 90
 
 NUM_CLASSES = 10
