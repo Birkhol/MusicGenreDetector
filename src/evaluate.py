@@ -25,7 +25,7 @@ def create_test_loader(model_type):
     if model_type == "1d":
         test_dataset = AudioDataset(test_csv)
     elif model_type == "2d":
-        test_dataset = SpectrogramDataset(test_csv)
+        test_dataset = SpectrogramDataset(test_csv, augment=False)
     else:
         raise ValueError("MODEL_TYPE must be either '1d' or '2d'")
 
