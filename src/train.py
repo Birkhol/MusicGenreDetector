@@ -5,7 +5,6 @@ import torch.nn as nn
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 from src.plot_results import save_learning_curves
-from src.config import FIGURES_DIR, MODEL_TYPE, WEIGHT_DECAY
 
 from src.config import (
     SPLITS_DIR,
@@ -13,7 +12,10 @@ from src.config import (
     BATCH_SIZE,
     LEARNING_RATE,
     EPOCHS,
-    NUM_CLASSES
+    NUM_CLASSES,
+    FIGURES_DIR,
+    MODEL_TYPE,
+    WEIGHT_DECAY
 )
 
 from src.utils import set_seed, get_device, ensure_directories
@@ -30,8 +32,8 @@ def create_dataloaders(model_type):
         val_dataset = AudioDataset(val_csv)
 
     elif model_type == "2d":
-        train_dataset = SpectrogramDataset(train_csv)
-        val_dataset = SpectrogramDataset(val_csv)
+        train_dataset = SpectrogramDataset(train_csv, augment=True)
+        val_dataset = SpectrogramDataset(val_csv, augment=False)
 
     else:
         raise ValueError("MODEL_TYPE must be either '1d' or '2d'")
@@ -64,7 +66,7 @@ def create_model(model_type, device):
     return model.to(device)
 
 
-def train_one_epoch(model, train_loader, criterion, optimizer, device):
+def train_one_epoch(model, train_loader, criterion, optimizer, scheduler, device):
     model.train()
 
     running_loss = 0.0
@@ -82,6 +84,7 @@ def train_one_epoch(model, train_loader, criterion, optimizer, device):
 
         loss.backward()
         optimizer.step()
+        scheduler.step()
 
         running_loss += loss.item()
 
@@ -134,11 +137,19 @@ def train():
 
     model = create_model(MODEL_TYPE, device)
 
-    criterion = nn.CrossEntropyLoss()
-    optimizer = torch.optim.Adam(
+    criterion = nn.CrossEntropyLoss(label_smoothing=0.1)
+    optimizer = torch.optim.AdamW(
         model.parameters(),
         lr=LEARNING_RATE,
         weight_decay=WEIGHT_DECAY
+    )
+    scheduler = torch.optim.lr_scheduler.OneCycleLR(
+        optimizer, 
+        max_lr=LEARNING_RATE, 
+        epochs=EPOCHS, 
+        steps_per_epoch=len(train_loader),
+        pct_start=0.3,
+        anneal_strategy='cos'
     )
 
     best_val_accuracy = 0.0
@@ -158,6 +169,7 @@ def train():
             train_loader,
             criterion,
             optimizer,
+            scheduler,
             device
         )
 
