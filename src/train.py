@@ -5,7 +5,10 @@ import torch.nn as nn
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 from src.plot_results import save_learning_curves
+<<<<<<< Updated upstream
 from src.config import FIGURES_DIR, MODEL_TYPE, WEIGHT_DECAY
+=======
+>>>>>>> Stashed changes
 
 from src.config import (
     SPLITS_DIR,
@@ -13,7 +16,10 @@ from src.config import (
     BATCH_SIZE,
     LEARNING_RATE,
     EPOCHS,
-    NUM_CLASSES
+    NUM_CLASSES,
+    FIGURES_DIR,
+    MODEL_TYPE,
+    WEIGHT_DECAY
 )
 
 from src.utils import set_seed, get_device, ensure_directories
@@ -30,8 +36,13 @@ def create_dataloaders(model_type):
         val_dataset = AudioDataset(val_csv)
 
     elif model_type == "2d":
+<<<<<<< Updated upstream
         train_dataset = SpectrogramDataset(train_csv)
         val_dataset = SpectrogramDataset(val_csv)
+=======
+        train_dataset = SpectrogramDataset(train_csv, augment=True)
+        val_dataset = SpectrogramDataset(val_csv, augment=False)
+>>>>>>> Stashed changes
 
     else:
         raise ValueError("MODEL_TYPE must be either '1d' or '2d'")
@@ -139,6 +150,17 @@ def train():
         model.parameters(),
         lr=LEARNING_RATE,
         weight_decay=WEIGHT_DECAY
+<<<<<<< Updated upstream
+=======
+    )
+    scheduler = torch.optim.lr_scheduler.OneCycleLR(
+        optimizer, 
+        max_lr=LEARNING_RATE, 
+        epochs=EPOCHS, 
+        steps_per_epoch=len(train_loader),
+        pct_start=0.3,
+        anneal_strategy='cos'
+>>>>>>> Stashed changes
     )
 
     best_val_accuracy = 0.0
