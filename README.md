@@ -30,32 +30,48 @@ Kaggle: https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre
 - `results/` - saved models, logs, and plots
 - `notebooks/` - experiments and data exploration
 
-## Dataset Setup
-
-1. Download the dataset from Kaggle:
-https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification
-
-2. Extract the files
-
-3. Create and place them in:
-
-data/raw/
-
-Final structure:
-
-data/raw/
-
-├── genres_original/
-
-├── images_original/
-
-├── features_30_sec.csv
-
-└── features_3_sec.csv
-
 ## Setup
 
+1.Clone the repository:
 ```bash
 git clone https://github.com/Birkhol/MusicGenreDetector.git
-cd MusicGenreDetector
+
+2.Create a virtual environment and activate it:
+```bash
 python -m venv venv
+# On Windows: venv\Scripts\activate
+# On macOS/Linux: source venv/bin/activate
+
+3.Install the required packages from requirements.txt:
+```bash
+pip install -r requirements.txt
+
+4. Configure the Model & Hyperparameters:
+Open src/config.py to customize your training run. You can toggle between different architectures and fine-tune the training settings:
+
+Model Selection: Set MODEL_TYPE to either "1d" or "2d" to choose between the 1D CNN and 2D CNN architectures.
+
+Hyperparameters: You can adjust the following variables to optimize performance:
+
+BATCH_SIZE: Number of samples processed per gradient update (default: 16).
+
+LEARNING_RATE: Controls how much to change the model in response to the estimated error (default: 0.0001).
+
+EPOCHS: Total number of training iterations (default: 70).
+
+DROPOUT: Regularization rate to prevent overfitting (default: 0.25).
+
+5. Before training the model, make sure to set the path to your project root in fix_paths.py by changing this variable: new_base = r'the-path-to-your-root'  and then run:
+```bash
+python -m src.fix_paths
+
+6.Train the model by:
+```bash
+ python -m src.train to train the model
+Test the model:
+```bash
+python -m src.evaluate to evaluate the model
+
+Results:
+To see the results of trained and evaluated model, go to results/figures for the images
+and results/models for the models themselves. Additionally, the results will be shown in the terminal where the train and evaluate commands were run.
