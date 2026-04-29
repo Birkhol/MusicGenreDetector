@@ -39,7 +39,7 @@ After cloning the project, run:
 ```bash
 cd MusicGenreDetector
 
-2.Create a virtual environment and activate it:
+(Optional) 2.Create a virtual environment and activate it:
 ```bash
 python -m venv venv
 # On Windows: venv\Scripts\activate
