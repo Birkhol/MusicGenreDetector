@@ -54,16 +54,6 @@ Open src/config.py to customize your training run. You can toggle between differ
 
 Model Selection: Set MODEL_TYPE to either "1d" or "2d" to choose between the 1D CNN and 2D CNN architectures.
 
-Hyperparameters: You can adjust the following variables to optimize performance:
-
-BATCH_SIZE: Number of samples processed per gradient update (default: 16).
-
-LEARNING_RATE: Controls how much to change the model in response to the estimated error (default: 0.0001).
-
-EPOCHS: Total number of training iterations (default: 70).
-
-DROPOUT: Regularization rate to prevent overfitting (default: 0.25).
-
 5. Before training the model, make sure to set the path to your project root in fix_paths.py by changing this variable: new_base = r'the-path-to-your-root'  and then run:
 ```bash
 python -m src.fix_paths
