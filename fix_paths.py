@@ -2,7 +2,7 @@ import pandas as pd
 import os
 
 # Update this to your actual path
-new_base = r'c:/Users/bohom/Desktop/DAT 255/MusicGenreDetector'
+new_base = r'change-to-your-root-path'
 
 # List of CSV files to update
 csv_files = ['data/splits/train.csv', 'data/splits/val.csv', 'data/splits/test.csv']
