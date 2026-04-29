@@ -1,9 +1,8 @@
 import pandas as pd
 import os
 
-# Define the old and new base paths
-old_base = r'C:\VSCode Projects\MusicGenreDetector'
-new_base = r'your-path-to-the-project-root'  # Update this to your actual path
+# Update this to your actual path
+new_base = r'c:/Users/bohom/Desktop/DAT 255/MusicGenreDetector'
 
 # List of CSV files to update
 csv_files = ['data/splits/train.csv', 'data/splits/val.csv', 'data/splits/test.csv']
@@ -12,9 +11,10 @@ for csv_file in csv_files:
     # Read the CSV
     df = pd.read_csv(csv_file)
     
-    # Update the audio_path and image_path columns
-    df['audio_path'] = df['audio_path'].str.replace(old_base, new_base, regex=False)
-    df['image_path'] = df['image_path'].str.replace(old_base, new_base, regex=False)
+    # This regex finds the "data" folder and replaces everything before it with the new_base
+    # regex=True is required to use the '^.*(?=data)' pattern
+    df['audio_path'] = df['audio_path'].str.replace(r'^.*(?=data)', new_base + '/', regex=True)
+    df['image_path'] = df['image_path'].str.replace(r'^.*(?=data)', new_base + '/', regex=True)
     
     # Write back to CSV
     df.to_csv(csv_file, index=False)

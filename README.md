@@ -60,10 +60,10 @@ python -m fix_paths
 
 6.Train the model by:
 ```bash
- python -m src.train to train the model
-Test the model:
+ python -m src.train
+Test the model by:
 ```bash
-python -m src.evaluate to evaluate the model
+python -m src.evaluate
 
 Results:
 To see the results of trained and evaluated model, go to results/figures for the images
