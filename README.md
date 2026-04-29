@@ -56,7 +56,7 @@ Model Selection: Set MODEL_TYPE to either "1d" or "2d" to choose between the 1D 
 
 5. Before training the model, make sure to set the path to your project root in fix_paths.py by changing this variable: new_base = r'the-path-to-your-root'  and then run:
 ```bash
-python -m src.fix_paths
+python -m fix_paths
 
 6.Train the model by:
 ```bash
