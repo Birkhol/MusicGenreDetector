@@ -58,7 +58,10 @@ Open src/config.py to customize your training run. You can toggle between differ
 
 Model Selection: Set MODEL_TYPE to either "1d" or "2d" to choose between the 1D CNN and 2D CNN architectures.
 
-### 5. Before training the model, make sure to set the path to your project root in fix_paths.py by changing this variable: new_base = r'the-path-to-your-root'  and then run:
+### 5. Change directory paths
+Before training the model, make sure to set the path to your project root in fix_paths.py
+by changing this variable: new_base = r'the/path/to/your/root' (Use forward slash "/" if you get issues)
+and then run:
 ```
 python -m fix_paths
 ```
