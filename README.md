@@ -35,6 +35,9 @@ Kaggle: https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre
 1.Clone the repository:
 ```bash
 git clone https://github.com/Birkhol/MusicGenreDetector.git
+After cloning the project, run:
+```bash
+cd MusicGenreDetector
 
 2.Create a virtual environment and activate it:
 ```bash
