@@ -32,39 +32,46 @@ Kaggle: https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre
 
 ## Setup
 
-1.Clone the repository:
-```bash
+### 1. Clone the repository:
+```
 git clone https://github.com/Birkhol/MusicGenreDetector.git
+```
 After cloning the project, run:
-```bash
+```
 cd MusicGenreDetector
+```
 
-(Optional) 2.Create a virtual environment and activate it:
-```bash
+### (Optional) 2. Create a virtual environment and activate it:
+```
 python -m venv venv
-# On Windows: venv\Scripts\activate
-# On macOS/Linux: source venv/bin/activate
+```
+On Windows: venv\Scripts\activate
+On macOS/Linux: source venv/bin/activate
 
-3.Install the required packages from requirements.txt:
-```bash
+### 3. Install the required packages from requirements.txt:
+```
 pip install -r requirements.txt
+```
 
-4. Configure the Model & Hyperparameters:
+### 4. Configure the Model & Hyperparameters:
 Open src/config.py to customize your training run. You can toggle between different architectures and fine-tune the training settings:
 
 Model Selection: Set MODEL_TYPE to either "1d" or "2d" to choose between the 1D CNN and 2D CNN architectures.
 
-5. Before training the model, make sure to set the path to your project root in fix_paths.py by changing this variable: new_base = r'the-path-to-your-root'  and then run:
-```bash
+### 5. Before training the model, make sure to set the path to your project root in fix_paths.py by changing this variable: new_base = r'the-path-to-your-root'  and then run:
+```
 python -m fix_paths
+```
 
-6.Train the model by:
-```bash
+### 6. Train the model by:
+```
  python -m src.train
-Test the model by:
-```bash
+```
+### Test the model by:
+```
 python -m src.evaluate
+```
 
-Results:
+### Results:
 To see the results of trained and evaluated model, go to results/figures for the images
 and results/models for the models themselves. Additionally, the results will be shown in the terminal where the train and evaluate commands were run.
