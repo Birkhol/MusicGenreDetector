@@ -4,9 +4,7 @@ __pycache__/
 *.pyc
 .ipynb_checkpoints/
 results/figures/*
-results/models/*
 .DS_Store
 .env
 
 !results/figures/.gitkeep
-!results/models/.gitkeep
