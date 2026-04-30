@@ -10,3 +10,4 @@ torchaudio
 torchvision
 tqdm
 jupyter
+streamlit
