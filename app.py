@@ -126,6 +126,8 @@ uploaded_file = st.file_uploader(
     type=["wav", "mp3"]
 )
 
+st.write("The first prediction may take up to a minute...")
+
 if uploaded_file is not None:
     st.audio(uploaded_file)
 
