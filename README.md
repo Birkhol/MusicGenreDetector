@@ -1,3 +1,6 @@
+# Link to webapp
+https://musicgenredetector.streamlit.app/
+
 # Music Genre Detector
 
 This project compares two deep learning approaches for music genre classification using the GTZAN dataset:
