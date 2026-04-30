@@ -5,7 +5,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(BASE_DIR, "data")
 RAW_DATA_DIR = os.path.join(DATA_DIR, "raw")
 PROCESSED_DATA_DIR = os.path.join(DATA_DIR, "processed")
-SPLITS_DIR = os.path.join(DATA_DIR, "splits")
+SPLITS_DIR = os.path.join(DATA_DIR, "splits_2")
 
 RESULTS_DIR = os.path.join(BASE_DIR, "results")
 MODELS_DIR = os.path.join(RESULTS_DIR, "models")
@@ -31,7 +31,7 @@ GENRES = [
 ]
 
 AUDIO_DIR = os.path.join(RAW_DATA_DIR, "genres_original")
-IMAGE_DIR = os.path.join(RAW_DATA_DIR, "images_original")
+IMAGE_DIR = os.path.join(PROCESSED_DATA_DIR, "generated_spectograms")
 
 RANDOM_SEED = 42
 TRAIN_SIZE = 0.7
